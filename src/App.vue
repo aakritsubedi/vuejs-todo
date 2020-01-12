@@ -1,28 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <ToDo v-bind:todos="todo"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ToDo from './components/ToDo'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    ToDo
+  },
+  data(){
+    return {
+      todo: [
+        { id: 1, title: 'Complete Vue Crash Course', status: false, created_at: Date.now(), updated_at: Date.now() },
+        { id: 2, title: 'Complete 3Star Hotel Website', status: false, created_at: Date.now(), updated_at: Date.now()},
+        { id: 3, title: 'Complete EJ-Note Website', status: false, created_at: Date.now(), updated_at: Date.now()}
+      ]
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
