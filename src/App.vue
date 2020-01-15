@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <Header />
-    <ToDo v-bind:todos="todo" v-on:del-todo="deleteToDo" />
+    <ToDo v-bind:todos="todo" v-on:del-todo= "deleteToDo" />
     <Button class="todo-add-btn" title='Add ToDo'/>
     <AddForm class="todo-add-form" />
   </div>
@@ -55,8 +55,9 @@ export default {
       ]
     };
   },
-  method: {
+  methods: {
     deleteToDo(id) {
+      
       this.todos = this.todos.filter(todo => todo.id !== id);
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <li class="item clearfix" v-bind:class="{'is-completed':todo.status}">
-    <button class="delete-btn"  @click="$emit('del-todo', todo.id)">Delete</button>
+    <button class="delete-btn"  @click= "$emit('del-todo')">Delete</button>
     <input type="checkbox" v-on:change="toggleStatus" />
     <span class="todo-title">{{todo.title}}</span>
     
@@ -27,6 +27,7 @@ export default {
       const year = new Date(timestamp).getFullYear();
       const date = day + "/" + month + "/" + year;
 
+      console.log(date);
       return date;
     }
   }

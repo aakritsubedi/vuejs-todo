@@ -1,5 +1,6 @@
 <template>
   <div class="add-form">
+    
     <div>
       <label for="title">Title: </label>
       <input type="text" name="title" placeholder="Enter Title"/>
