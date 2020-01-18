@@ -1,8 +1,8 @@
 <template>
   <div class="app">
     <Header />
-    <ToDo v-bind:todos="todo" v-on:del-todo= "deleteToDo" />
-    <Button class="todo-add-btn" title='Add ToDo'/>
+    <ToDo v-bind:todos="todo" v-on:del-todo= "deleteToDo" v-on:toggle-status= "toggleStatus" />
+    <Button class="todo-add-btn" title='Add ToDo' v-on:display-form= "displayForm"/>
     <AddForm class="todo-add-form" />
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
         {
           id: 1,
           title: "Complete Vue Crash Course",
-          status: false,
+          status: true,
           created_at: Date.now(),
           updated_at: Date.now()
         },
@@ -58,7 +58,18 @@ export default {
   methods: {
     deleteToDo(id) {
       
-      this.todos = this.todos.filter(todo => todo.id !== id);
+      this.todo = this.todo.filter(todo => todo.id !== id);
+    },
+    toggleStatus(id) {  
+      for(let i=0;i<this.todo.length;i++){
+        if(this.todo[i].id === id){
+          this.todo[i].status = !this.todo[i].status;
+          break;
+        }
+      }
+    },
+    displayForm() {
+      console.log("Add Form",AddForm);
     }
   }
 };
@@ -87,9 +98,10 @@ export default {
   box-shadow: 5px 5px 3px 0px rgba(125, 125, 125, 0.75);
 }
 .todo-add-form {
-  right: 20px;
   top: 50px;
+  right: 20px;
   border: none;
+  display: none;
   padding: 10px;
   font-size: 22px;
   position: absolute;

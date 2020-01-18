@@ -17,11 +17,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "AddForm"
+};
 </script>
 
 <style scoped>
 .add-form {
+  width: 30%;
+  /* display: none; */
   border: 1px solid #f4f4f4;
 }
 input[type=text] {

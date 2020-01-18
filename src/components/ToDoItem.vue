@@ -1,7 +1,9 @@
 <template>
   <li class="item clearfix" v-bind:class="{'is-completed':todo.status}">
     <button class="delete-btn"  @click= "$emit('del-todo')">Delete</button>
-    <input type="checkbox" v-on:change="toggleStatus" />
+    <Checkbox v-bind:status="todo.status"  v-on:toggle-status= "$emit('toggle-status')"/>
+    <!-- <input v-if="todo.status" type="checkbox" v-on:change="toggleStatus" checked/>
+    <input v-else type="checkbox" v-on:change="toggleStatus" /> -->
     <span class="todo-title">{{todo.title}}</span>
     
     <span class="float-right">
@@ -12,13 +14,19 @@
 </template>
 
 <script>
+import Checkbox from './Checkbox';
+
 export default {
   name: "ToDoItem",
   props: ["todo"],
+  components: {
+    Checkbox
+  },
   methods: {
     toggleStatus() {
       this.todo.status = !this.todo.status;
     },
+
     date(timestamp) {
       let day = new Date(timestamp).getDate();
       day = day < 9 ? "0" + day : day;
@@ -26,8 +34,7 @@ export default {
       month = month < 9 ? "0" + month : month;
       const year = new Date(timestamp).getFullYear();
       const date = day + "/" + month + "/" + year;
-
-      console.log(date);
+      
       return date;
     }
   }
@@ -47,7 +54,7 @@ export default {
   border-bottom: 1px solid #f4f4f4;
 }
 .item:hover {
-  background-color: #7cec9f;
+  background-color: #F0DF87;
   border-bottom: 1px solid #000000;
 }
 .todo-title {
@@ -70,6 +77,9 @@ export default {
   font-weight:  bolder;
   background-color: #ff0000;
 
+}
+.checked {
+  color: red;
 }
 .clearfix {
   overflow: auto;
