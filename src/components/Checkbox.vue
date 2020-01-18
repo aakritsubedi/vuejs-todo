@@ -21,6 +21,7 @@ export default{
     }
     .checked {
         border: none;
+        color: #2ecc72;
         transition: 2s ease-in-out;
     }
 </style>
